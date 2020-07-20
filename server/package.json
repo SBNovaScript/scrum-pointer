@@ -1,0 +1,79 @@
+{
+  "name": "scrum-pointer",
+  "description": "An assistant for SCRUM sprint estimation!",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Steven Baumann",
+    "email": "stevenfbaumann@gmail.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "engines": {
+    "node": "^14.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run compile && npm run jest",
+    "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
+    "dev": "ts-node-dev --no-notify src/",
+    "start": "npm run compile && node lib/",
+    "jest": "jest  --forceExit",
+    "compile": "shx rm -rf lib/ && tsc"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ],
+    "ignore": []
+  },
+  "types": "lib/",
+  "dependencies": {
+    "@feathersjs/authentication": "^4.5.6",
+    "@feathersjs/authentication-local": "^4.5.6",
+    "@feathersjs/authentication-oauth": "^4.5.6",
+    "@feathersjs/configuration": "^4.5.5",
+    "@feathersjs/errors": "^4.5.5",
+    "@feathersjs/express": "^4.5.6",
+    "@feathersjs/feathers": "^4.5.5",
+    "@feathersjs/socketio": "^4.5.6",
+    "@feathersjs/transport-commons": "^4.5.5",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "crypto-random-string": "^3.2.0",
+    "feathers-nedb": "^5.1.0",
+    "helmet": "^3.23.3",
+    "moment": "^2.27.0",
+    "nedb": "^1.8.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.0",
+    "@types/cors": "^2.8.6",
+    "@types/helmet": "0.0.47",
+    "@types/jest": "^26.0.5",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/nedb": "^1.8.10",
+    "@types/serve-favicon": "^2.5.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "axios": "^0.19.2",
+    "eslint": "^7.5.0",
+    "jest": "^26.1.0",
+    "shx": "^0.3.2",
+    "ts-jest": "^26.1.3",
+    "ts-node-dev": "^1.0.0-pre.52",
+    "typescript": "^3.9.7"
+  }
+}
