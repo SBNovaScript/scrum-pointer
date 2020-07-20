@@ -11,8 +11,10 @@ const CredentialsReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case UPDATE_CREDENTIALS:
             return {
-                ...state, 
-                ...action
+                ...state,
+                accessToken: action.accessToken,
+                displayName: action.displayName,
+                username: action.username,
             }
         default:
             return state;

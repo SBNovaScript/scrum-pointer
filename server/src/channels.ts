@@ -26,9 +26,6 @@ export default function(app: Application): void {
       // Add it to the authenticated user channel
       app.channel('authenticated').join(connection);
 
-      console.log('Welcome ', connection);
-      
-
       // Channels can be named anything and joined on any condition 
       
       // E.g. to send real-time events only to admins use

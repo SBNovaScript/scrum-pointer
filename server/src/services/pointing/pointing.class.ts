@@ -15,7 +15,7 @@ export class Pointing extends Service<PointingData> {
   
   async create(data: PointingData, params?: Params) {
     const { points } = data;
-    
+
     const date = moment();
 
     const getChannelGuid = () => {
