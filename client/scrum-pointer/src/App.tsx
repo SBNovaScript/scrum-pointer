@@ -11,6 +11,8 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import ChannelHome from './screens/channel-home';
+import AuthenticatedRoute from './components/authenticated-route';
+import ConnectToRoom from './screens/connect-to-room';
 
 function App() {
 
@@ -38,16 +40,15 @@ function App() {
             <Route exact path={'/'}>
               <Home />
             </Route>
-            <Route path={'/select'}>
-              <NoAuthRedirect>
+            <AuthenticatedRoute path={'/select'}>
                 <ModeSelect />
-              </NoAuthRedirect>
-            </Route>
-            <Route path={'/room'}>
-              <NoAuthRedirect>
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={'/room'}>
                 <ChannelHome />
-              </NoAuthRedirect>
-            </Route>
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={'/connect'}>
+                <ConnectToRoom />
+            </AuthenticatedRoute>
           </Switch>
         </Router>
       </PersistGate>

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
 import client from '../../feathers';
 import { updateChannel } from '../../redux/actions';
+import { useHistory } from 'react-router';
 
 const ModeSelect = () => {
     const name = useSelector((state: any) => state.CredentialsReducer.displayName);
@@ -23,6 +24,12 @@ const ModeSelect = () => {
         })
     }
 
+    let history = useHistory();
+
+    const connectToRoom = () => {
+        history.push('/connect');
+    };
+
     return (
         <Container>
             {channel ? <Redirect to='/room' /> : null}
@@ -33,7 +40,7 @@ const ModeSelect = () => {
                 <Button onClick={createNewRoom}>
                     {'Create a room'}
                 </Button>
-                <Button>
+                <Button onClick={connectToRoom}>
                     {'Connect to an existing room'}
                 </Button>
             </Row>
