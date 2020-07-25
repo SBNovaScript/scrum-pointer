@@ -17,7 +17,22 @@ class GitHubStrategy extends OAuthStrategy {
     
     return  {
       ...baseData,
-      name: profile.login,
+      id: profile.login,
+      email: profile.email,
+      displayName: profile.name,
+    };
+  }
+}
+
+class GoogleStrategy extends OAuthStrategy {
+  async getEntityData(profile: OAuthProfile, existing: any, params: Params) {
+    const baseData = await super.getEntityData(profile, existing, params);
+    console.log(profile);
+    
+
+    return  {
+      ...baseData,
+      id: profile.sub,
       email: profile.email,
       displayName: profile.name,
     };
@@ -30,6 +45,7 @@ export default function(app: Application): void {
   authentication.register('jwt', new JWTStrategy());
   authentication.register('local', new LocalStrategy());
   authentication.register('github', new GitHubStrategy());
+  authentication.register('google', new GoogleStrategy());
 
   app.use('/authentication', authentication);
   app.configure(expressOauth());

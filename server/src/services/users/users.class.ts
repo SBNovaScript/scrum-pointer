@@ -6,9 +6,8 @@ import { Params } from '@feathersjs/feathers';
 interface UserData {
   _id?: string;
   email: string;
-  password: string;
-  name?: string;
-  githubId?: string;
+  displayName?: string;
+  id?: string;
 }
 
 export class Users extends Service<UserData> {
@@ -17,13 +16,12 @@ export class Users extends Service<UserData> {
   }
 
   async create(data: UserData, params?: Params) {
-    const { email, password, githubId, name } = data;
+    const { id, email, displayName } = data;
 
     const userData = {
+      id,
       email,
-      password,
-      githubId,
-      name
+      displayName
     };
 
     return super.create(userData, params);

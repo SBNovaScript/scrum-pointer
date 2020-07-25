@@ -13,6 +13,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ChannelHome from './screens/channel-home';
 import AuthenticatedRoute from './components/authenticated-route';
 import ConnectToRoom from './screens/connect-to-room';
+import Header from './components/header';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={'null'} persistor={persistor}>
+        <Header />
         <Router>
           <Switch>
             <Route exact path={'/'}>
