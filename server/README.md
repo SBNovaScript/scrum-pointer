@@ -1,6 +1,6 @@
 # scrum-pointer
 
-> An assistant for SCRUM sprint estimation!
+> A seamless Scrum pointing solution!
 
 ## About
 

@@ -34,7 +34,7 @@ const ModeSelect = () => {
         <Container>
             {channel ? <Redirect to='/room' /> : null}
             <Row xs={12} className={'d-flex justify-content-center'}>
-               {'Hello ' + name + '! ' + 'Please select an option:'} 
+               {`Hello ${name}! Please select an option:`} 
             </Row>
             <Row xs={12} className={'d-flex justify-content-center'}>
                 <Button onClick={createNewRoom}>

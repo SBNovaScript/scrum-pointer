@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React from 'react';
 import { Container, Row, Button, Form } from 'react-bootstrap';
 import client from '../../feathers';
 import { useSelector } from 'react-redux';

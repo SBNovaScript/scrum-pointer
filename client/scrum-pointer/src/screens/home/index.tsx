@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import client from '../../feathers';
 import { githubURL, googleURL } from '../../constants';
 import { Button, Container, Row, Col } from 'react-bootstrap';
@@ -10,8 +10,6 @@ const Home = () => {
 
     const accessToken = useSelector((state: any) => state.CredentialsReducer.accessToken)
 
-    const [errorCode, setErrorCode] = useState('');
-
     const dispatch = useDispatch();
     // const state = useSelector((state: any) => state.CredentialsReducer.displayName);
     client.on('authenticated', (data: any) => {
@@ -19,7 +17,7 @@ const Home = () => {
         dispatch(updateCredentials({
             accessToken: data.accessToken,
             username:data.user.name,
-            displayName: data.user.displayName
+            displayName: data.user.name
         }));
 
     })

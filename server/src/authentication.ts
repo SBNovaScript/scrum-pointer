@@ -19,7 +19,7 @@ class GitHubStrategy extends OAuthStrategy {
       ...baseData,
       id: profile.login,
       email: profile.email,
-      displayName: profile.name,
+      name: profile.name
     };
   }
 }
@@ -27,14 +27,12 @@ class GitHubStrategy extends OAuthStrategy {
 class GoogleStrategy extends OAuthStrategy {
   async getEntityData(profile: OAuthProfile, existing: any, params: Params) {
     const baseData = await super.getEntityData(profile, existing, params);
-    console.log(profile);
     
-
     return  {
       ...baseData,
-      id: profile.sub,
+      id: profile.login,
       email: profile.email,
-      displayName: profile.name,
+      name: profile.name
     };
   }
 }

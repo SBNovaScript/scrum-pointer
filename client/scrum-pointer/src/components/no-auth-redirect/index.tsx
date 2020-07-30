@@ -1,5 +1,4 @@
-import React, { Fragment, useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import client from '../../feathers';
@@ -7,10 +6,9 @@ import client from '../../feathers';
 const NoAuthRedirect = ({children}: {children: object}) => {
     const accessToken = useSelector((state: any) => state.CredentialsReducer.accessToken);
     const channel = useSelector((state: any) => state.ChannelReducer.channel);
-    const [serverToken, setServerToken] = useState('');
 
     // Authenticate from stored token if available.
-    client.authenticate().catch((err: any) => setServerToken(''));
+    client.authenticate().catch((err: any) => console.log(err));
 
     const redirectRoute = {
         home: Boolean(!accessToken && !channel),

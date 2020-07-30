@@ -1,7 +1,6 @@
-import { Service, NedbServiceOptions } from 'feathers-nedb';
+import { Service, MongooseServiceOptions } from 'feathers-mongoose';
 import { Application } from '../../declarations';
 import { Params } from '@feathersjs/feathers';
-import moment from 'moment';
 import cryptoRandomString from 'crypto-random-string';
 
 interface ProvidedChannel {
@@ -15,16 +14,18 @@ interface UserChannel {
 
 export class Channel extends Service {
   //eslint-disable-next-line @typescript-eslint/no-unused-vars
-  constructor(options: Partial<NedbServiceOptions>, app: Application) {
+  constructor(options: Partial<MongooseServiceOptions>, app: Application) {
     super(options);
+  }
+
+  async find(params: Params) {
+    return [];
   }
 
   async create(data: ProvidedChannel, params?: Params) {
     const { providedChannel } = data;
 
     const user = params?.connection?.user?._id;
-
-    const date = moment();
 
     const getChannelGuid = () => {
       return cryptoRandomString({length: 6});
