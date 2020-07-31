@@ -19,7 +19,6 @@ const Home = () => {
             username:data.user.name,
             displayName: data.user.name
         }));
-
     })
 
     useEffect(() => {

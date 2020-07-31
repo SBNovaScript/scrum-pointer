@@ -8,7 +8,7 @@ interface ProvidedChannel {
 }
 
 interface UserChannel {
-  user: string,
+  users: Array<string>,
   channel: string
 }
 
@@ -18,11 +18,24 @@ export class Channel extends Service {
     super(options);
   }
 
-  async find(params: Params) {
-    return [];
+  async get(channel: string, params?: Params) {
+    const usersInChannel = await super.find({
+      query: {
+        channel: channel
+      }
+    });
+
+    try {
+      const allUsersInChannel = Object(usersInChannel).data[0].users;
+
+      return allUsersInChannel;
+    } catch (error) {
+      return [];
+    }
+    
   }
 
-  async create(data: ProvidedChannel, params?: Params) {
+  async create(data: ProvidedChannel, params?: Params): Promise<UserChannel> {
     const { providedChannel } = data;
 
     const user = params?.connection?.user?._id;
@@ -34,7 +47,7 @@ export class Channel extends Service {
     const channel = providedChannel ?? getChannelGuid();
 
     const userInChannel: UserChannel = {
-      user,
+      users: [user],
       channel
     };
 

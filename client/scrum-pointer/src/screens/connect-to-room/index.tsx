@@ -25,7 +25,13 @@ const ConnectToRoom = () => {
         }
         
         // Form is validated
-        connectToNewRoom(form[roomCodeControlName].value);
+        client.service('channel').get(form[roomCodeControlName].value).then((response: any) => {
+            if (response !== []) {
+                connectToNewRoom(form[roomCodeControlName].value);
+            }
+        }).catch((err: any) => {
+            console.log(err);
+        })
     }
 
     return (

@@ -1,4 +1,5 @@
 import * as authentication from '@feathersjs/authentication';
+import userIdListToUsers from '../../hooks/user-id-list-to-users';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -17,7 +18,7 @@ export default {
   after: {
     all: [],
     find: [],
-    get: [],
+    get: [userIdListToUsers()],
     create: [],
     update: [],
     patch: [],
