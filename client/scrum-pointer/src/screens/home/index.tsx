@@ -3,7 +3,7 @@ import client from '../../feathers';
 import { githubURL, googleURL } from '../../constants';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCredentials } from '../../redux/actions';
+import { updateCredentials, updateChannel } from '../../redux/actions';
 import { Redirect } from 'react-router';
 
 const Home = () => {
@@ -11,7 +11,6 @@ const Home = () => {
     const accessToken = useSelector((state: any) => state.CredentialsReducer.accessToken)
 
     const dispatch = useDispatch();
-    // const state = useSelector((state: any) => state.CredentialsReducer.displayName);
     client.on('authenticated', (data: any) => {
         console.log('Authenticated with ', data);
         dispatch(updateCredentials({
@@ -20,6 +19,10 @@ const Home = () => {
             displayName: data.user.name
         }));
     })
+
+    client.service('channel').on('created', (user: any, connection: any) => {
+        dispatch(updateChannel(user.channel));
+    });
 
     useEffect(() => {
         if (accessToken === null) {

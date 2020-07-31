@@ -10,12 +10,6 @@ const ModeSelect = () => {
     const name = useSelector((state: any) => state.CredentialsReducer.displayName);
     const channel = useSelector((state: any) => state.ChannelReducer.channel);
 
-    const dispatch = useDispatch();
-
-    client.service('channel').on('created', (user: any, connection: any) => {
-        dispatch(updateChannel(user.channel));
-    });
-
     const createNewRoom = () => {
         client.service('channel').create({}).then((response: any) => {
             console.log(response);

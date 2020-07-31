@@ -9,7 +9,7 @@ export default (options = {}): Hook => {
 
     // If the user has requested a channel that does not exist,
     // do not attempt to get the users information.
-    if (context.result === []) {
+    if (context.result.length === 0) {
       return context;
     }
 

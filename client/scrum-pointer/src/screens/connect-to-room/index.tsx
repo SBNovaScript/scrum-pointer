@@ -1,17 +1,19 @@
 import React from 'react';
 import { Container, Row, Button, Form } from 'react-bootstrap';
 import client from '../../feathers';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
+import { updateChannel } from '../../redux/actions';
 
 const ConnectToRoom = () => {
 
     const roomCodeControlName = 'formRoomCode';
     const storedRoomCode = useSelector((state: any) => state.ChannelReducer.channel);
+    const dispatch = useDispatch();
 
     const connectToNewRoom = (roomCode: string) => {
-        client.service('channel').create({providedChannel: roomCode}).then((response: any) => {
-            console.log(response);
+        client.service('channel').update(0, {providedChannel: roomCode}).then((response: any) => {
+            dispatch(updateChannel(response.channel));
         }).catch((err: any) => {
             console.error(err);
         })
@@ -26,7 +28,7 @@ const ConnectToRoom = () => {
         
         // Form is validated
         client.service('channel').get(form[roomCodeControlName].value).then((response: any) => {
-            if (response !== []) {
+            if (response.length !== 0) {
                 connectToNewRoom(form[roomCodeControlName].value);
             }
         }).catch((err: any) => {
