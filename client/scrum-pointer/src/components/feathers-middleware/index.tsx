@@ -9,6 +9,12 @@ const FeathersMiddleware = () => {
         dispatch(updateChannel(user.channel));
     });
 
+    client.service('channel').on('updated', (connectedChannel: any, connection: any) => {
+        client.service('channel').get(connectedChannel.channel).then((result: any) => {
+            console.log(result);
+        });
+    });
+
     // Used to render nothing.
     return null;
 }

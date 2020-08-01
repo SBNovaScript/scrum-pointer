@@ -1,6 +1,7 @@
 import * as authentication from '@feathersjs/authentication';
 import userIdListToUsers from '../../hooks/user-id-list-to-users';
 import dbIdFromChannelId from '../../hooks/db-id-from-channel-id';
+import joinSpecifiedChannel from '../../hooks/join-specified-channel';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -20,8 +21,8 @@ export default {
     all: [],
     find: [],
     get: [userIdListToUsers()],
-    create: [],
-    update: [],
+    create: [joinSpecifiedChannel()],
+    update: [joinSpecifiedChannel()],
     patch: [],
     remove: []
   },
