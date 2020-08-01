@@ -10,6 +10,7 @@ interface UserData {
   avatar?: string;
   githubId?: string;
   googleId?: string;
+  gravatar?: string;
 }
 
 export class Users extends Service {
@@ -19,16 +20,16 @@ export class Users extends Service {
   }
 
   async create(data: UserData, params?: Params) {
-    const { email, password, githubId, googleId, name } = data;
+    const { email, password, githubId, googleId, name, gravatar } = data;
 
     console.log(data);
     
-
     const userData = {
       email,
       password,
       githubId,
       googleId,
+      gravatar,
       name
     };
 

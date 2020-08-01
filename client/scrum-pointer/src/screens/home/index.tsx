@@ -3,7 +3,7 @@ import client from '../../feathers';
 import { githubURL, googleURL } from '../../constants';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCredentials, updateChannel } from '../../redux/actions';
+import { updateCredentials } from '../../redux/actions';
 import { Redirect } from 'react-router';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
 
     const dispatch = useDispatch();
     client.on('authenticated', (data: any) => {
-        console.log('Authenticated with ', data);
+        // console.log('Authenticated with ', data);
         dispatch(updateCredentials({
             accessToken: data.accessToken,
             username:data.user.name,

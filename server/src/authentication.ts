@@ -14,12 +14,13 @@ declare module './declarations' {
 class GitHubStrategy extends OAuthStrategy {
   async getEntityData(profile: OAuthProfile, existing: any, params: Params) {
     const baseData = await super.getEntityData(profile, existing, params);
-    
+
     return  {
       ...baseData,
       id: profile.login,
       email: profile.email,
-      name: profile.name
+      name: profile.name,
+      gravatar: profile.avatar_url
     };
   }
 }
@@ -27,12 +28,13 @@ class GitHubStrategy extends OAuthStrategy {
 class GoogleStrategy extends OAuthStrategy {
   async getEntityData(profile: OAuthProfile, existing: any, params: Params) {
     const baseData = await super.getEntityData(profile, existing, params);
-    
+
     return  {
       ...baseData,
       id: profile.login,
       email: profile.email,
-      name: profile.name
+      name: profile.name,
+      gravatar: profile.picture
     };
   }
 }

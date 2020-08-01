@@ -12,6 +12,7 @@ export default function (app: Application): Model<any> {
     name: {type: String},
     googleId: { type: String },
     githubId: { type: String },
+    gravatar: { type: String }
   }, {
     timestamps: true
   });

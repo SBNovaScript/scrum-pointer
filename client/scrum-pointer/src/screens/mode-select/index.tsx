@@ -1,9 +1,8 @@
 import React from 'react';
 import { Container, Row, Button } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import client from '../../feathers';
-import { updateChannel } from '../../redux/actions';
 import { useHistory } from 'react-router';
 
 const ModeSelect = () => {
