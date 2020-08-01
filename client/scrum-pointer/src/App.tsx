@@ -14,6 +14,7 @@ import AuthenticatedRoute from './components/authenticated-route';
 import ConnectToRoom from './screens/connect-to-room';
 import Header from './components/header';
 import FAQ from './screens/faq';
+import FeathersMiddleware from './components/feathers-middleware';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={'null'} persistor={persistor}>
         <Header />
+        <FeathersMiddleware />
         <Router>
           <Switch>
             <Route exact path={'/'}>

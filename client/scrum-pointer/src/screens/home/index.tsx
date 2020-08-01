@@ -20,10 +20,6 @@ const Home = () => {
         }));
     })
 
-    client.service('channel').on('created', (user: any, connection: any) => {
-        dispatch(updateChannel(user.channel));
-    });
-
     useEffect(() => {
         if (accessToken === null) {
             client.authenticate().catch((err: any) => console.log(err));
