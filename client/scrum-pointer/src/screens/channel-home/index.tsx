@@ -22,17 +22,49 @@ const ChannelHome = () => {
 
     return (
         <Container>
-            {'You are in channel ' + channel + '! 🎉'}
-            {users.map((user: any) => 
-            <Row key={user._id}>
-                <Col xs={6} md={4}>
-                    <Image src={user.gravatar} roundedCircle fluid />
-                </Col>
-                <Col xs={6} md={4}>
-                    {user.name}
-                </Col>
+            <Row className={'justify-content-center'}>
+                <h2 className={'text-muted'}>
+                    {'You are in channel '}
+                </h2>
             </Row>
-            )}
+            <Row className={'justify-content-center mb-4'}>
+                <h2>
+                    {`${channel} 🎉`}
+                </h2>
+            </Row>
+            <Container className={'jumbotron'}>
+                <Row className={'justify-content-center mb-5 text-center'}>
+                    <h3>
+                        <u>
+                            {'This is the title of the ticket'}
+                        </u>
+                    </h3>
+                </Row>
+                <Row xs={6} className={'justify-content-around align-middle'}>
+                    <Container className={'h-100'}>
+                        {users.map((user: any) => 
+                        <Row key={user._id}>
+                            <Col>
+                                <Image src={user.gravatar} roundedCircle thumbnail />
+                            </Col>
+                            <Col>
+                                <p>
+                                    {user.name}
+                                </p>
+                                <h5 className={'text-center'}>
+                                    {'3'}
+                                </h5>
+                            </Col>
+                        </Row>
+                        )}
+                    </Container>
+                    <Container className={'my-auto'}>
+                        <h1>
+                            {'3'}
+                        </h1>
+                    </Container>
+                </Row>
+            </Container>
         </Container>
     )
 }

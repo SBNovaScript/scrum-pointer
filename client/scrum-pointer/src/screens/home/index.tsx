@@ -27,12 +27,12 @@ const Home = () => {
     }, [accessToken])
 
     return (
-        <Container>
+        <Container className={'jumbotron'}>
             {accessToken ? <Redirect to='/select' /> :  null}
             <Row xs={12} className={'d-flex justify-content-center'}>
                 <h1>Welcome!</h1>
             </Row>
-            <Row xs={12} className={'d-flex justify-content-center'}>
+            <Row xs={12} className={'d-flex justify-content-center text-center'}>
                 <p>{'Scrum Pointer is a real-time, fullstack Scrum pointing solution. To continue, please:'}</p>
             </Row>
             <Row className={'justify-content-md-center'}>

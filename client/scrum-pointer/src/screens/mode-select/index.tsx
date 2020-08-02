@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button } from 'react-bootstrap';
+import { Container, Row, Button, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import client from '../../feathers';
@@ -24,18 +24,24 @@ const ModeSelect = () => {
     };
 
     return (
-        <Container>
+        <Container className={'jumbotron'}>
             {channel ? <Redirect to='/room' /> : null}
-            <Row xs={12} className={'d-flex justify-content-center'}>
-               {`Hello ${name}! Please select an option:`} 
+            <Row xs={12} className={'justify-content-center mb-3'}>
+               {`Hi ${name}! Please select an option:`} 
             </Row>
-            <Row xs={12} className={'d-flex justify-content-center'}>
-                <Button onClick={createNewRoom}>
-                    {'Create a room'}
-                </Button>
-                <Button onClick={connectToRoom}>
-                    {'Connect to an existing room'}
-                </Button>
+            <Row sm={6}className={'justify-content-center'}>
+                <Col>
+                    <Button onClick={createNewRoom}>
+                        {'Create a room'}
+                    </Button>
+                </Col>
+                
+                <Col>
+                    <Button onClick={connectToRoom}>
+                        {'Connect to an existing room'}
+                    </Button>   
+                </Col>
+                
             </Row>
             
         </Container>
