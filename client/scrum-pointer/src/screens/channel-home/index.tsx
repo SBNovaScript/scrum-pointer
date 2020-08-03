@@ -41,7 +41,7 @@ const ChannelHome = () => {
                     </h3>
                 </Row>
                 <Row xs={6} className={'justify-content-around align-middle'}>
-                    <Container className={'h-100'}>
+                    <Container>
                         {users.map((user: any) => 
                         <Row key={user._id}>
                             <Col>
@@ -58,7 +58,7 @@ const ChannelHome = () => {
                         </Row>
                         )}
                     </Container>
-                    <Container className={'my-auto'}>
+                    <Container className={'align-self-center'}>
                         <h1>
                             {'3'}
                         </h1>

@@ -1,6 +1,7 @@
 import '@feathersjs/transport-commons';
 import { HookContext } from '@feathersjs/feathers';
 import { Application } from './declarations';
+import { connection } from 'mongoose';
 
 export default function (app: Application): void {
   if (typeof app.channel !== 'function') {
@@ -52,6 +53,10 @@ export default function (app: Application): void {
 
   app.service('channel').publish((data, context) => {    
     return app.channel(data.channel);
+  });
+
+  app.on('disconnect', connection => {
+    console.log(connection);
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

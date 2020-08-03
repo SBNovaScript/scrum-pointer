@@ -5,7 +5,7 @@ import { Hook, HookContext } from '@feathersjs/feathers';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default (options = {}): Hook => {
   return async (context: HookContext): Promise<HookContext> => {
-    const channel = context.data.providedChannel;
+    const channel = context.data.providedChannel.toString().toLowerCase();
 
     const channelDb = await context.app.service('channel').find({
       query: {

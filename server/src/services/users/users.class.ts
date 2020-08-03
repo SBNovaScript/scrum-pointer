@@ -21,8 +21,6 @@ export class Users extends Service {
 
   async create(data: UserData, params?: Params) {
     const { email, password, githubId, googleId, name, gravatar } = data;
-
-    console.log(data);
     
     const userData = {
       email,

@@ -9,7 +9,11 @@ export default (options = {}): Hook => {
 
     // If the user is already in the channel, this will not do anything.
     context.app.channel(context.result.channel).join(context.params.connection as RealTimeConnection);
-    
+
+    const fullUsersInfo = await context.app.service('users').get(context.params.user);
+
+    context.app.service('users').update(fullUsersInfo._id, {...fullUsersInfo, channels: [...fullUsersInfo.channels, context.result.channel]});
+
     return context;
   };
 };
