@@ -5,12 +5,24 @@
 import { Application } from '../declarations';
 import { Model, Mongoose } from 'mongoose';
 
+// Users can abstain / not be available to vote.
+class UserPoints {
+  private user: string;
+  private points: number;
+
+  constructor(user: string, points: number) {
+    this.user = user;
+    this.points = points;
+  }
+}
+
 export default function (app: Application): Model<any> {
   const modelName = 'pointing';
   const mongooseClient: Mongoose = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
-    text: { type: String, required: true }
+    title: { type: String, required: true },
+    users: { type: UserPoints }
   }, {
     timestamps: true
   });
