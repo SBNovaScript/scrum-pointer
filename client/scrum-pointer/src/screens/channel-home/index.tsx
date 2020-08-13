@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import client from '../../feathers';
+import { Point, AllPoints } from '../../constants';
 
 const ChannelHome = () => {
     const channel = useSelector((state: any) => state.ChannelReducer.channel);
+
+    const formControlPointsInput = 'formControlPointsInput';
+    const formRadialInputs = 'formRadialInputs';
+
+    const totalPoints = useState<Point>(1);
 
     const [users, setUsers] = useState([]);
 
@@ -19,6 +25,8 @@ const ChannelHome = () => {
             setUsers(result);
         });
     });
+
+    // const submitPoints = (event: )
 
     return (
         <Container>
@@ -52,7 +60,7 @@ const ChannelHome = () => {
                                     {user.name}
                                 </p>
                                 <h5 className={'text-center'}>
-                                    {'3'}
+                                    {'?'}
                                 </h5>
                             </Col>
                         </Row>
@@ -60,9 +68,32 @@ const ChannelHome = () => {
                     </Container>
                     <Container className={'align-self-center'}>
                         <h1>
-                            {'3'}
+                            {'?'}
                         </h1>
                     </Container>
+                </Row>
+                <Row className={'justify-content-center'}>
+                    <Form>
+                        <Form.Group controlId={formControlPointsInput}>
+                            <Form.Label className={'text-align-center'}>{'What point value would you assign this ticket?'}</Form.Label>
+                            <Row className={'justify-content-center'}>
+                                {AllPoints.map((point: Point) => 
+                                    <Form.Check
+                                        type={'radio'}
+                                        label={point}
+                                        name={formRadialInputs}
+                                        id={formRadialInputs + point.toString()}
+                                        className={'mr-3'}
+                                    />
+                                )}
+                            </Row>
+                        </Form.Group>
+                        <Row className={'justify-content-center'}>
+                            <Button type={'submit'}>
+                                {'Submit'}
+                            </Button>
+                        </Row>
+                    </Form>
                 </Row>
             </Container>
         </Container>
