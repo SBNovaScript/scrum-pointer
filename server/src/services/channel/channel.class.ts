@@ -9,6 +9,7 @@ interface ProvidedChannel {
 
 interface UserChannel {
   users: Array<string>,
+  host: string,
   channel: string
 }
 
@@ -66,6 +67,7 @@ export class Channel extends Service {
 
     const userInChannel: UserChannel = {
       users: [user],
+      host: user,
       channel
     };
 

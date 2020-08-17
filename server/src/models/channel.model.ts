@@ -11,6 +11,7 @@ export default function (app: Application): Model<any> {
   const { Schema } = mongooseClient;
   const schema = new Schema({
     users: { type: Array, required: true },
+    host: { type: String, required: true },
     channel: { type: String, required: true }
   }, {
     timestamps: true
