@@ -2,6 +2,8 @@
 
 > A seamless Scrum pointing solution!
 
+This is the server for Scrum Pointer! Run it at the same time as the client.
+
 ## About
 
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.

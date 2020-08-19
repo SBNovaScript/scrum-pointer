@@ -1,3 +1,5 @@
+# The front end for Scrum Pointer! Run this at the same time as the server.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
