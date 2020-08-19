@@ -14,6 +14,8 @@ const ChannelHome = () => {
 
     const [users, setUsers] = useState([]);
 
+    const [pointAverage, setPointAverage] = useState(0);
+
     if (users.length === 0) {
         client.service('channel').get(channel).then((result: any) => {
             setUsers(result);
@@ -23,6 +25,12 @@ const ChannelHome = () => {
     client.service('channel').on('updated', (connectedChannel: any, connection: any) => {
         client.service('channel').get(connectedChannel.channel).then((result: any) => {
             setUsers(result);
+        });
+    });
+
+    client.service('pointing').on('updated', (connectedChannel: any, connection: any) => {
+        client.service('pointing').get(connectedChannel.channel).then((result: any) => {
+            setPointAverage(result);
         });
     });
 
@@ -68,7 +76,7 @@ const ChannelHome = () => {
                     </Container>
                     <Container className={'align-self-center'}>
                         <h1>
-                            {'?'}
+                            {pointAverage}
                         </h1>
                     </Container>
                 </Row>
