@@ -12,7 +12,6 @@ const Home = () => {
 
     const dispatch = useDispatch();
     client.on('authenticated', (data: any) => {
-        // console.log('Authenticated with ', data);
         dispatch(updateCredentials({
             accessToken: data.accessToken,
             username:data.user.name,

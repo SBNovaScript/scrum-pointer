@@ -10,8 +10,6 @@ const ChannelHome = () => {
     const formControlPointsInput = 'formControlPointsInput';
     const formRadialInputs = 'formRadialInputs';
 
-    const totalPoints = useState<Point>(1);
-
     const [users, setUsers] = useState([]);
 
     const [pointAverage, setPointAverage] = useState(0);
@@ -33,8 +31,6 @@ const ChannelHome = () => {
             setPointAverage(result);
         });
     });
-
-    // const submitPoints = (event: )
 
     return (
         <Container>
