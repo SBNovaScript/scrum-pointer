@@ -1,6 +1,6 @@
 ## About 
 
-The front end for Scrum Pointer! Run this at the same time as the server.
+The front end for Scrum Pointer! Run this at the same time as the server to take advantage of the full application.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
