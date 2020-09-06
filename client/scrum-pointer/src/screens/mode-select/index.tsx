@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Col } from 'react-bootstrap';
+import { Container, Row, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import client from '../../feathers';

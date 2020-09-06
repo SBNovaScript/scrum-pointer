@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import client from '../../feathers';
-import { Point, AllPoints } from '../../constants';
+import { Point, AllPoints, INVALID_POINT } from '../../constants';
 
 const ChannelHome = () => {
     const channel = useSelector((state: any) => state.ChannelReducer.channel);
@@ -11,8 +11,37 @@ const ChannelHome = () => {
     const formRadialInputs = 'formRadialInputs';
 
     const [users, setUsers] = useState([]);
+    const [pointValue, setPointValue] = useState(INVALID_POINT);
 
     const [pointAverage, setPointAverage] = useState(0);
+
+    const submitPointValueDisabled = pointValue === INVALID_POINT;
+
+    const updatePointValue = (event: any) => {
+        // setPointValue(point);
+
+        console.log(event.target);
+        
+    }
+
+    const submitPoints = (event: any) => {
+        const form = event.currentTarget;
+        if(form.checkValidity()){
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        
+        console.log(form[formRadialInputs].value['label']);
+
+        // Form is validated
+        // client.service('channel').get(form[roomCodeControlName].value).then((response: any) => {
+        //     if (response.length !== 0) {
+        //         connectToNewRoom(form[roomCodeControlName].value);
+        //     }
+        // }).catch((err: any) => {
+        //     console.log(err);
+        // })
+    }
 
     if (users.length === 0) {
         client.service('channel').get(channel).then((result: any) => {
@@ -77,23 +106,24 @@ const ChannelHome = () => {
                     </Container>
                 </Row>
                 <Row className={'justify-content-center'}>
-                    <Form>
+                    <Form onSubmit={submitPoints}>
                         <Form.Group controlId={formControlPointsInput}>
                             <Form.Label className={'text-align-center'}>{'What point value would you assign this ticket?'}</Form.Label>
-                            <Row className={'justify-content-center'}>
+                            <Row className={'justify-content-center'} onChange={updatePointValue}>
                                 {AllPoints.map((point: Point) => 
                                     <Form.Check
                                         type={'radio'}
                                         label={point}
                                         name={formRadialInputs}
                                         id={formRadialInputs + point.toString()}
+                                        key={point.toString()}
                                         className={'mr-3'}
                                     />
                                 )}
                             </Row>
                         </Form.Group>
                         <Row className={'justify-content-center'}>
-                            <Button type={'submit'}>
+                            <Button type={'submit'} disabled={submitPointValueDisabled}>
                                 {'Submit'}
                             </Button>
                         </Row>

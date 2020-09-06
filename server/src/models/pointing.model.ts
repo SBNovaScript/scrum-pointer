@@ -12,7 +12,7 @@ export default function (app: Application): Model<any> {
   const schema = new Schema({
     channel: { type: String, required: true },
     title: { type: String, required: true },
-    users: { type: Object }
+    user_points: { type: Object }
   }, {
     timestamps: true
   });
