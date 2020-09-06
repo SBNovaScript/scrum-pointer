@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import client from '../../feathers';
@@ -17,30 +17,16 @@ const ChannelHome = () => {
 
     const submitPointValueDisabled = pointValue === INVALID_POINT;
 
-    const updatePointValue = (event: any) => {
-        // setPointValue(point);
-
-        console.log(event.target);
-        
+    const updatePointValue = (point: Point) => {
+        setPointValue(point);
     }
 
-    const submitPoints = (event: any) => {
-        const form = event.currentTarget;
-        if(form.checkValidity()){
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    const submitPoints = (event: FormEvent<HTMLElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
         
-        console.log(form[formRadialInputs].value['label']);
-
-        // Form is validated
-        // client.service('channel').get(form[roomCodeControlName].value).then((response: any) => {
-        //     if (response.length !== 0) {
-        //         connectToNewRoom(form[roomCodeControlName].value);
-        //     }
-        // }).catch((err: any) => {
-        //     console.log(err);
-        // })
+        // Submit point value
+        console.log(pointValue);
     }
 
     if (users.length === 0) {
@@ -109,7 +95,7 @@ const ChannelHome = () => {
                     <Form onSubmit={submitPoints}>
                         <Form.Group controlId={formControlPointsInput}>
                             <Form.Label className={'text-align-center'}>{'What point value would you assign this ticket?'}</Form.Label>
-                            <Row className={'justify-content-center'} onChange={updatePointValue}>
+                            <Row className={'justify-content-center'}>
                                 {AllPoints.map((point: Point) => 
                                     <Form.Check
                                         type={'radio'}
@@ -118,6 +104,7 @@ const ChannelHome = () => {
                                         id={formRadialInputs + point.toString()}
                                         key={point.toString()}
                                         className={'mr-3'}
+                                        onClick={() => updatePointValue(point)}
                                     />
                                 )}
                             </Row>
