@@ -56,7 +56,7 @@ export default function (app: Application): void {
   });
 
   app.on('disconnect', connection => {
-    console.log(connection);
+    // console.log(connection);
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

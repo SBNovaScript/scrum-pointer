@@ -25,6 +25,10 @@ const ChannelHome = () => {
         event.preventDefault();
         event.stopPropagation();
         
+        client.service('pointing').update(pointValue).then((response: any) => {
+            console.log('Response received:', response);
+        })
+
         // Submit point value
         console.log(pointValue);
     }
