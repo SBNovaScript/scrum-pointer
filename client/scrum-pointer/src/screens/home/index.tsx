@@ -45,7 +45,6 @@ const Home = () => {
                         {'Login With Google'}
                     </Button>
                 </Col>
-                
             </Row>
         </Container>
     )

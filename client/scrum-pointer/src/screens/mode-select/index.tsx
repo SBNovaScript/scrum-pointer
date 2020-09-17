@@ -8,6 +8,7 @@ import { useHistory } from 'react-router';
 const ModeSelect = () => {
     const name = useSelector((state: any) => state.CredentialsReducer.displayName);
     const channel = useSelector((state: any) => state.ChannelReducer.channel);
+    let history = useHistory();
 
     const createNewRoom = () => {
         client.service('channel').create({}).then((response: any) => {
@@ -16,8 +17,6 @@ const ModeSelect = () => {
             console.error(err);
         })
     }
-
-    let history = useHistory();
 
     const connectToRoom = () => {
         history.push('/connect');
@@ -30,15 +29,13 @@ const ModeSelect = () => {
                {`Hi ${name}! Please select an option:`} 
             </Row>
             <Row sm={12}className={'justify-content-center'}>
-                    <Button variant={'outline-primary'} onClick={createNewRoom}>
-                        {'Create a room'}
-                    </Button>
-                    <Button variant={'outline-primary'} onClick={connectToRoom}>
-                        {'Connect to an existing room'}
-                    </Button>   
-                
+                <Button variant={'outline-primary'} onClick={createNewRoom}>
+                    {'Create a room'}
+                </Button>
+                <Button variant={'outline-primary'} onClick={connectToRoom}>
+                    {'Connect to an existing room'}
+                </Button>   
             </Row>
-            
         </Container>
     )
 }
