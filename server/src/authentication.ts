@@ -2,7 +2,6 @@ import { ServiceAddons, Params } from '@feathersjs/feathers';
 import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication';
 import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth, OAuthStrategy, OAuthProfile } from '@feathersjs/authentication-oauth';
-
 import { Application } from './declarations';
 
 declare module './declarations' {

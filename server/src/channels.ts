@@ -55,9 +55,10 @@ export default function (app: Application): void {
     return app.channel(data.channel);
   });
 
-  app.on('disconnect', connection => {
-    // console.log(connection);
-  });
+  // To run a command on disconnect:
+  // app.on('disconnect', connection => {
+  //   // console.log(connection);
+  // });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // app.publish((data: any, hook: HookContext) => {
