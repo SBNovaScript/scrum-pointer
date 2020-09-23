@@ -42,6 +42,8 @@ export default function (app: Application): void {
   });
 
   app.service('users').publish('created', (data, context) => {
+    // Only send data to the channel that the user is in.
+
     return [
       app
         .channel(app.channels)
