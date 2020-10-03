@@ -1,6 +1,7 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
 import { Hook, HookContext } from '@feathersjs/feathers';
+import {DEFAULT_POINT_VALUE} from "../constants";
 
 // Take the user provided point, and map it to the user in the Pointing model.
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,8 +13,6 @@ export default (options = {}): Hook => {
     // This will be changed in update as more users enter the channel.
     // User's points are initialized to -1.
 
-    const default_point = -1;
-
     context.data =
       {
         ...context.data,
@@ -23,7 +22,7 @@ export default (options = {}): Hook => {
 
     const user_id = context.params.user._id;
 
-    context.data.user_points[user_id] = default_point;
+    context.data.user_points[user_id] = DEFAULT_POINT_VALUE;
 
     return context;
   };

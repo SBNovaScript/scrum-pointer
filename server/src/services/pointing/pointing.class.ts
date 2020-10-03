@@ -1,11 +1,16 @@
 import { Service, MongooseServiceOptions } from 'feathers-mongoose';
 import { Application } from '../../declarations';
-import {Params} from '@feathersjs/feathers';
-import cryptoRandomString from 'crypto-random-string';
+import {Id, Params} from '@feathersjs/feathers';
+import {DEFAULT_POINT_VALUE} from '../../constants';
 
 interface ProvidedTitle {
   title: string,
   channel: string
+}
+
+interface ProvidedUser {
+  channel: string,
+  point: number
 }
 
 // user_points represents an object which holds user id's as keys, and points as values.
@@ -22,7 +27,7 @@ export class Pointing extends Service {
   }
 
   async create(data: ProvidedTitle, params?: Params): Promise<UserPoints> {
-    // The first time a channel is created, initialize the host's point value to -1.
+    // The first time a channel is created, initialize the host's point value to the default initialization value.
 
     const { title, channel } = data;
 
@@ -34,7 +39,8 @@ export class Pointing extends Service {
       user_points: {}
     };
 
-    userPoints.user_points[user] = -1;
+    // Initialize the default user point value.
+    userPoints.user_points[user] = DEFAULT_POINT_VALUE;
 
     return super.create(userPoints);
   }

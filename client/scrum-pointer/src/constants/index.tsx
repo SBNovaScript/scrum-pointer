@@ -7,6 +7,8 @@ export type Point = 1 | 2 | 3 | 5 | 8 | 13 | 21;
 
 export const INVALID_POINT = -1;
 
+export const INVALID_TITLE = '';
+
 export const AllPoints: Array<Point> = [
     1,
     2,

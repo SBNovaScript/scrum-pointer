@@ -2,13 +2,15 @@ import React, { useState, FormEvent } from 'react';
 import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import client from '../../feathers';
-import { Point, AllPoints, INVALID_POINT } from '../../constants';
+import {Point, AllPoints, INVALID_POINT, INVALID_TITLE} from '../../constants';
 
 const ChannelHome = () => {
     const channel = useSelector((state: any) => state.ChannelReducer.channel);
+    const [channelInitialized, setChannelInitialized] = useState(false);
 
     const formControlPointsInput = 'formControlPointsInput';
     const formRadialInputs = 'formRadialInputs';
+    const titleControlName = 'title';
 
     const [users, setUsers] = useState([]);
     const [pointValue, setPointValue] = useState(INVALID_POINT);
@@ -17,22 +19,7 @@ const ChannelHome = () => {
 
     const submitPointValueDisabled = pointValue === INVALID_POINT;
 
-    const updatePointValue = (point: Point) => {
-        setPointValue(point);
-    }
-
-    const submitPoints = (event: FormEvent<HTMLElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        client.service('pointing').create({pointValue, channel, title: 'test'}).then((response: any) => {
-            console.log('Response received:', response);
-        })
-
-        // Submit point value
-        console.log(pointValue);
-    }
-
+    // Getting base info for the channel.
     if (users.length === 0) {
         client.service('channel').get(channel).then((result: any) => {
             setUsers(result);
@@ -50,6 +37,92 @@ const ChannelHome = () => {
             setPointAverage(result);
         });
     });
+
+    // Logic for creating and updating the point value.
+    const updatePointValue = (point: Point) => {
+        setPointValue(point);
+    }
+
+    const submitPoints = (event: FormEvent<HTMLElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        client.service('pointing').create({pointValue, channel, title: 'test'}).then((response: any) => {
+            console.log('Response received:', response);
+            setChannelInitialized(true);
+        })
+
+        // Submit point value
+        console.log(pointValue);
+    }
+
+    // Logic for creating the ticket title.
+    const submitTitle = (event: any) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const form = event.currentTarget;
+        if(form.checkValidity()){
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        client.service('pointing').create({pointValue, channel, title: form[titleControlName].value}).then((response: any) => {
+            console.log('Response received:', response);
+            setChannelInitialized(true);
+        })
+
+        // Submit point value
+        console.log(pointValue);
+    }
+
+
+    // Used when a title is needed for the given ticket.
+    const ChannelTitleForm = () => (
+        <Form onSubmit={submitTitle}>
+            <Form.Group controlId={titleControlName}>
+                <Form.Label className={'text-align-center'}>{'What is the title of the current ticket?'}</Form.Label>
+                <Row className={'justify-content-center'}>
+                    <Form.Control
+                        type={'text'}
+                        placeholder={'Enter Title'}
+                    />
+                </Row>
+            </Form.Group>
+            <Row className={'justify-content-center'}>
+                <Button type={'submit'} disabled={false}>
+                    {'Submit'}
+                </Button>
+            </Row>
+        </Form>
+    )
+
+    // Used when a point value is needed for a given ticket.
+    const PointSubmitForm = () => (
+        <Form onSubmit={submitPoints}>
+            <Form.Group controlId={formControlPointsInput}>
+                <Form.Label className={'text-align-center'}>{'What point value would you assign this ticket?'}</Form.Label>
+                <Row className={'justify-content-center'}>
+                    {AllPoints.map((point: Point) =>
+                        <Form.Check
+                            type={'radio'}
+                            label={point}
+                            name={formRadialInputs}
+                            id={formRadialInputs + point.toString()}
+                            key={point.toString()}
+                            className={'mr-3'}
+                            onClick={() => updatePointValue(point)}
+                        />
+                    )}
+                </Row>
+            </Form.Group>
+            <Row className={'justify-content-center'}>
+                <Button type={'submit'} disabled={submitPointValueDisabled}>
+                    {'Submit'}
+                </Button>
+            </Row>
+        </Form>
+    );
 
     return (
         <Container>
@@ -96,29 +169,10 @@ const ChannelHome = () => {
                     </Container>
                 </Row>
                 <Row className={'justify-content-center'}>
-                    <Form onSubmit={submitPoints}>
-                        <Form.Group controlId={formControlPointsInput}>
-                            <Form.Label className={'text-align-center'}>{'What point value would you assign this ticket?'}</Form.Label>
-                            <Row className={'justify-content-center'}>
-                                {AllPoints.map((point: Point) => 
-                                    <Form.Check
-                                        type={'radio'}
-                                        label={point}
-                                        name={formRadialInputs}
-                                        id={formRadialInputs + point.toString()}
-                                        key={point.toString()}
-                                        className={'mr-3'}
-                                        onClick={() => updatePointValue(point)}
-                                    />
-                                )}
-                            </Row>
-                        </Form.Group>
-                        <Row className={'justify-content-center'}>
-                            <Button type={'submit'} disabled={submitPointValueDisabled}>
-                                {'Submit'}
-                            </Button>
-                        </Row>
-                    </Form>
+                    {channelInitialized ?
+                        <PointSubmitForm /> :
+                        <ChannelTitleForm />
+                    }
                 </Row>
             </Container>
         </Container>

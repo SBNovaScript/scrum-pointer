@@ -9,7 +9,7 @@ export default {
     all: [ authenticate('jwt') ],
     find: [],
     get: [],
-    create: [hookPointToUser()],
+    create: [],
     update: [],
     patch: [],
     remove: []
