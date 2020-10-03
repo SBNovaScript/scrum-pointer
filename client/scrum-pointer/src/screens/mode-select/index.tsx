@@ -28,7 +28,7 @@ const ModeSelect = () => {
             <Row xs={12} className={'justify-content-center mb-3'}>
                {`Hi ${name}! Please select an option:`} 
             </Row>
-            <Row sm={12}className={'justify-content-center'}>
+            <Row sm={12} className={'justify-content-center'}>
                 <Button variant={'outline-primary'} onClick={createNewRoom}>
                     {'Create a room'}
                 </Button>

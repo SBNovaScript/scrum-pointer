@@ -1,7 +1,7 @@
 // Initializes the `pointing` service on path `/pointing`
-import { ServiceAddons } from '@feathersjs/feathers';
-import { Application } from '../../declarations';
-import { Pointing } from './pointing.class';
+import {ServiceAddons} from '@feathersjs/feathers';
+import {Application} from '../../declarations';
+import {Pointing} from './pointing.class';
 import createModel from '../../models/pointing.model';
 import hooks from './pointing.hooks';
 

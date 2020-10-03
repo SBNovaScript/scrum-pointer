@@ -9,8 +9,8 @@ export default {
     all: [ authenticate('jwt') ],
     find: [],
     get: [],
-    create: [],
-    update: [hookPointToUser()],
+    create: [hookPointToUser()],
+    update: [],
     patch: [],
     remove: []
   },

@@ -7,7 +7,23 @@ import { Hook, HookContext } from '@feathersjs/feathers';
 export default (options = {}): Hook => {
   return async (context: HookContext): Promise<HookContext> => {
 
-    console.log(context);
+    // When a channel title is created:
+    // initialize a pointing section as well, with the host as the only user.
+    // This will be changed in update as more users enter the channel.
+    // User's points are initialized to -1.
+
+    const default_point = -1;
+
+    context.data =
+      {
+        ...context.data,
+        user_points: {
+        }
+      };
+
+    const user_id = context.params.user._id;
+
+    context.data.user_points[user_id] = default_point;
 
     return context;
   };

@@ -25,7 +25,7 @@ const ChannelHome = () => {
         event.preventDefault();
         event.stopPropagation();
         
-        client.service('pointing').update(pointValue).then((response: any) => {
+        client.service('pointing').create({pointValue, channel, title: 'test'}).then((response: any) => {
             console.log('Response received:', response);
         })
 
