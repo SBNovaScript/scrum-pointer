@@ -26,6 +26,20 @@ export class Pointing extends Service {
     super(options);
   }
 
+  async update(id: Id, data: ProvidedUser, params?: Params): Promise<UserPoints> {
+    // Placeholder update. Will be called when a user submits a point value.
+
+    const {channel, point} = data;
+
+    const userPoints: UserPoints = {
+      channel,
+      title: 'test',
+      user_points: {}
+    };
+
+    return super.update(id, userPoints, params);
+  }
+
   async create(data: ProvidedTitle, params?: Params): Promise<UserPoints> {
     // The first time a channel is created, initialize the host's point value to the default initialization value.
 
