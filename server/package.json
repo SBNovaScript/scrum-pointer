@@ -54,7 +54,7 @@
     "feathers-mongoose": "^8.3.1",
     "helmet": "^3.23.3",
     "mongodb-core": "^3.2.7",
-    "mongoose": "^5.10.9",
+    "mongoose": "^5.10.10",
     "serve-favicon": "^2.5.0",
     "winston": "^3.3.3"
   },
@@ -69,10 +69,10 @@
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "axios": "^0.19.2",
-    "eslint": "^7.11.0",
-    "jest": "^26.6.0",
+    "eslint": "^7.12.0",
+    "jest": "^26.6.1",
     "shx": "^0.3.2",
-    "ts-jest": "^26.4.1",
+    "ts-jest": "^26.4.2",
     "ts-node-dev": "^1.0.0",
     "typescript": "^3.9.7"
   }
